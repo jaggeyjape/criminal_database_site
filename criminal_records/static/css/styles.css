@@ -1,0 +1,29 @@
+
+/* Pagination */
+.pagination {
+    text-align: center;
+    margin: 20px;
+}
+
+.pagination a, .pagination span {
+    display: inline-block;
+    padding: 10px 15px;
+    text-decoration: none;
+    background: #007BFF;
+    color: white;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.pagination a:hover {
+    background: #0056b3;
+}
+
+/* Pagination Icons */
+.pagination .first-page::before { content: "⏮"; margin-right: 5px; }
+.pagination .prev-page::before { content: "◀"; margin-right: 5px; }
+.pagination .next-page::after { content: "▶"; margin-left: 5px; }
+.pagination .last-page::after { content: "⏭"; margin-left: 5px; }
+

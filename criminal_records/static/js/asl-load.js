@@ -1,0 +1,1 @@
+https://mediumspringgreen-newt-826750.hostingersite.com/wp-content/plugins/ajax-search-lite/js/min/plugin/optimized/asl-load.js?ver=4768
