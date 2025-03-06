@@ -86,7 +86,6 @@ pyparsing==3.1.2
 PySocks==1.7.1
 python-crfsuite==0.9.11
 python-resize-image==1.1.20
-pywin32==308
 PyYAML==6.0.2
 queuelib==1.7.0
 requests==2.32.3
