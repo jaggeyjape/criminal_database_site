@@ -3,10 +3,11 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.views.decorators.csrf import csrf_exempt
 from .queries.db_queries import fetch_results, fetch_record
 from .decorators import login_required
 
-
+@csrf_exempt
 def user_login(request):
     if request.session.get("is_logged_in"):
         return HttpResponseRedirect(reverse("search") + "?authorized=true")
