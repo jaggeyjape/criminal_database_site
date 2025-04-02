@@ -72,20 +72,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'criminal_records_site.wsgi.application'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'criminal_records',        # Your PostgreSQL database name
-        'USER': 'postgres',             # Your PostgreSQL username
-        'PASSWORD': 'amnaali123',         # Your PostgreSQL password
-        'HOST': 'localhost',                 # 'localhost' if running locally
-        'PORT': '5432',                      # Default PostgreSQL port
-    }
-}
-
-# DATABASES ={
-#     "default": dj_database_url.config(default="postgresql://postgres:ebpDqCeMhnutvRKteFMwVnxKlmGinYrj@switchyard.proxy.rlwy.net:14445/railway")
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'criminal_records',        # Your PostgreSQL database name
+#         'USER': 'postgres',             # Your PostgreSQL username
+#         'PASSWORD': 'amnaali123',         # Your PostgreSQL password
+#         'HOST': 'localhost',                 # 'localhost' if running locally
+#         'PORT': '5432',                      # Default PostgreSQL port
+#     }
 # }
+
+DATABASES ={
+    "default": dj_database_url.config(default="postgresql://postgres:ebpDqCeMhnutvRKteFMwVnxKlmGinYrj@switchyard.proxy.rlwy.net:14445/railway")
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
