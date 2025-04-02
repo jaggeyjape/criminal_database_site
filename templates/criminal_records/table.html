@@ -1,177 +1,196 @@
 {% load static %}
-<div class="table-container">
-    {% if request.GET.name or request.GET.age or request.GET.crime_title or request.GET.charge_description %}
-    {% if page_obj %}
-    <h2 class="table-title">Criminal Records</h2>
-    <table class="modern-table">
-        <thead>
-            <tr>
-                <th>Crime Title</th>
-                <th>Name</th>
-                <th>Charge Description</th>
-                <th>Age</th>
-                <th>Detail Link</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for record in page_obj %}
-                            <tr>
-                                <td class="expandable">{{ record.crime_title }}</td>
-                                <td class="expandable">{{ record.name }}</td>
-                                <td class="expandable">{{ record.charge_description }}</td>
-                                <td>{{ record.age }}</td>
-                                <td><a href="{% url 'record_details' record.id %}" target="_blank" class="profile-btn">View Details</a></td>
-                            </tr>
-                        {% endfor %}
-        </tbody>
-    </table>
- <!-- Pagination Controls -->
-                <div class="pagination">
-                    {% if page_obj.has_previous %}
-                        <a href="?page=1{% if request.GET.name %} &name={{ request.GET.name }}{% endif %}
-                        {% if request.GET.crime_title %} &crime_title={{ request.GET.crime_title }}{% endif %}
-                        {% if request.GET.charge_description %} &charge_description={{ request.GET.charge_description }}{% endif %}"
-                        class="first-page"></a>
-                        <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.name %} &name={{ request.GET.name }}{% endif %}
-                        {% if request.GET.crime_title %} &crime_title={{ request.GET.crime_title }}{% endif %}
-                        {% if request.GET.charge_description %} &charge_description={{ request.GET.charge_description }}{% endif %}"
-                        class="prev-page"></a>
-                    {% else %}
-                        <span class="disabled first-page"></span>
-                        <span class="disabled prev-page"></span>
-                    {% endif %}
+<div class="page-container">
+<!--    <div class="page-container">-->
+        {% if page_obj %}
+        <table class="modern-table">
+            <thead>
+                <tr>
+                    <th>Criminal ID</th>
+                    <th>Name</th>
+                    <th>Crime Title</th>
+                    <th>Age</th>
+                    <th>Charge Description</th>
+                    <th>Image</th>
+                    <th>State</th>
+                    <th>FOIA Response Time</th>
+                    <th>FOIA Status</th>
+                    <th> Assigned To</th>
+                    <th>Detail Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in page_obj %}
+                <tr>
+                    <td class="expandable">{{ record.c_id }}</td>
+                    <td class="expandable">{{ record.name }}</td>
+                    <td class="expandable">{{ record.crime_title }}</td>
+                    <td>{{ record.age }}</td>
+                    <td class="expandable">{{ record.charge_description }}</td>
+                    <td>
+                        <img src="{% url 'get_s3_image' record.id %}" alt="No Image" onerror="this.onerror=null; this.src='/media/images/No_image_available.jpg';" class="image-block">
 
-                    <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                    </td>
+                    <td>{{ record.state }}</td>
+                    <td>{{ record.f_response_time }}</td>
+                    <td>{{ record.f_status }}</td>
+                    <td>{{ record.assigned_to }}</td>
+                    <td>
+                        <a href="{% url 'record_details' record.id %}" target="_blank" class="profile-btn">Details</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
 
-                    {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}{% if request.GET.name %} &name={{ request.GET.name }}{% endif %}
-                        {% if request.GET.crime_title %} &crime_title={{ request.GET.crime_title }}{% endif %}
-                        {% if request.GET.charge_description %} &charge_description={{ request.GET.charge_description }}{% endif %}"
-                        class="next-page"></a>
-                        <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.name %} &name={{ request.GET.name }}{% endif %}
-                        {% if request.GET.crime_title %} &crime_title={{ request.GET.crime_title }}{% endif %}
-                        {% if request.GET.charge_description %} &charge_description={{ request.GET.charge_description }}{% endif %}"
-                        class="last-page"></a>
-                    {% else %}
-                        <span class="disabled next-page"></span>
-                        <span class="disabled last-page"></span>
-                    {% endif %}
-                </div>
-
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+        <a href="?page=1" class="first-page"></a>
+        <a href="?page={{ page_obj.previous_page_number }}" class="prev-page"></a>
         {% else %}
-            <p>No Records found against this Search.</p>
+        <span class="disabled first-page"></span>
+        <span class="disabled prev-page"></span>
         {% endif %}
-    {% else %}
-            <p>No Search has been made.</p>
+
+        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}" class="next-page"></a>
+        <a href="?page={{ page_obj.paginator.num_pages }}" class="last-page"></a>
+        {% else %}
+        <span class="disabled next-page"></span>
+        <span class="disabled last-page"></span>
         {% endif %}
     </div>
+    {% else %}
+    <p>
+        {% if request.GET.name or request.GET.age or request.GET.crime_title or request.GET.charge_description %}
+        No Records found against this Search.
+        {% else %}
+        No records found.
+        {% endif %}
+    </p>
+    {% endif %}
+<!--    </div>-->
+
 
 <style>
-    /* Table Container - Wider */
-    .table-container {
-        width: 95%;
-        max-width: 1500px;
-        margin: 30px auto;
-        padding: 10px;
-        background: #f8f9fa;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        text-align: center;
-    }
+/* Full Page Styling */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    /* Table Title */
-    .table-title {
+body, html {
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+<!--    background: linear-gradient(135deg, #4A90E2, #007bff);-->
+    background-size: cover;
+}
+
+/* Centering Page */
+.page-container {
+    display: flex;
+    justify-content: center;
+<!--    align-items: center;-->
+    padding: 5px;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+<!--    min-height: 100vh;-->
+<!--    padding: 20px;-->
+}
+
+/* Table Container */
+.table-container {
+    width: 100%;
+    max-width: 100%;
+    background: #fff;
+    margin: 0 auto;
+    padding: 5px;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Table Title */
+.table-title {
         font-size: 28px;
         font-weight: bold;
         color: #333;
-        margin: 10px;
+<!--        margin: 10px;-->
     }
 
-    /* Modern Table */
-    .modern-table {
-        width: 100%;
-        border-collapse: collapse;
-        background: #fff;
-        border-radius: 10px;
-        overflow: hidden;
-    }
+/* Modern Table */
+.modern-table {
+    width: auto;
+    max-width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 10px;
+    table-layout: auto; /* Prevents overflow */
+}
 
-    /* Table Header - Radiant Blue Gradient */
-    .modern-table th {
-        background: linear-gradient(135deg, #a0c4ff, #007bff);
-        color: black;
-        padding: 18px;
-        font-size: 20px;
-        text-transform: uppercase;
-        border: 1px solid black;
-    }
+/* Table Header */
+.modern-table th {
+    background: linear-gradient(135deg, #4A90E2, #007bff);
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
 
-    /* Table Cells */
-    .modern-table td {
-        padding: 18px;
-        font-size: 18px;
-        border: 1px solid black;
-        max-width: 250px;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        transition: max-height 0.3s ease-in-out;
-        cursor: pointer;
-        vertical-align: middle;
-    }
+/* Table Cells */
+.modern-table td {
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+<!--    text-align: center;-->
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
-    /* Expanded State - Vertical Expansion */
-    .modern-table td.expanded {
-        white-space: normal;
-        word-wrap: break-word;
-        max-height: 100px;
-    }
+/* Expandable Text */
+.modern-table td.expandable {
+    cursor: pointer;
+    white-space: nowrap;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all 0.3s ease;
+}
 
-    /* Status Labels */
-    .status {
-        padding: 7px 12px;
-        border-radius: 5px;
-        font-weight: bold;
-    }
+/* Expanded State */
+.modern-table td.expanded {
+    white-space: normal;
+    word-wrap: break-word;
+}
 
-    .active { background: #28a745; color: white; }
-    .inactive { background: #dc3545; color: white; }
-    .pending { background: #ffc107; color: black; }
+/* Profile Button */
+.profile-btn {
+    text-decoration: none;
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
 
-    /* Profile Button */
-    .profile-btn {
-        text-decoration: none;
-        background: #007bff;
-        color: white;
-        padding: 10px 15px;
-        border-radius: 5px;
-        transition: 0.3s;
-    }
-
-    .profile-btn:hover {
-        background: #0056b3;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .table-container {
-            width: 100%;
-            padding: 10px;
-        }
-
-        .modern-table th, .modern-table td {
-            padding: 14px;
-            font-size: 16px;
-        }
-    }
+.profile-btn:hover {
+    background: #0056b3;
+}
 
 /* Pagination */
 .pagination {
     text-align: center;
-    margin: 20px;
+    margin-top: 20px;
 }
 
-.pagination a, .pagination span {
+.pagination a,
+.pagination span {
     display: inline-block;
     padding: 10px 15px;
     text-decoration: none;
@@ -193,13 +212,37 @@
 .pagination .next-page::after { content: "▶"; margin-left: 5px; }
 .pagination .last-page::after { content: "⏭"; margin-left: 5px; }
 
+/* Disabled Buttons */
+.pagination .disabled {
+    background-color: #ccc;
+    color: #666;
+    pointer-events: none;
+}
+.image-block {
+    width: 100px;
+    height: 100px;
+    object-fit: contain; /* or 'contain' for different behavior */
+    border-radius: 8px; /* Optional for rounded corners */
+    border: 1px solid black;
+    padding: 1px;
+}
 
+/* Responsive Design */
+@media (max-width: 768px) {
+    .modern-table td, .modern-table th {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .modern-table td.expandable {
+        max-width: 120px;
+    }
+}
 </style>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const expandableCells = document.querySelectorAll(".expandable");
-
         expandableCells.forEach(cell => {
             cell.addEventListener("click", function () {
                 this.classList.toggle("expanded");
@@ -207,6 +250,3 @@
         });
     });
 </script>
-
-
-<!--<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">-->

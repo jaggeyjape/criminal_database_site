@@ -48,6 +48,10 @@
     <form method="GET" action="{% url 'results' %}">
         <div class="row mb-4">
             <div class="col-md-12">
+                <label for="cid" class="form-label">Search By Criminal ID</label>
+                <input type="text" value="{{ request.GET.cid|default_if_none:'' }}" class="form-control form-control-lg" id="cid" name="c_id" placeholder="Enter Criminal ID">
+            </div>
+            <div class="col-md-12">
                 <label for="name" class="form-label">Search By Name</label>
                 <input type="text" value="{{ request.GET.name|default_if_none:'' }}" class="form-control form-control-lg" id="from" name="name" placeholder="Enter Name">
             </div>

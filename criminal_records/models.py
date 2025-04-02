@@ -1,8 +1,11 @@
 from django.db import models
+from datetime import datetime
+
 
 class CriminalData(models.Model):
-    id = models.UUIDField(primary_key=True,db_column='ID')
-    source_site = models.TextField(db_column='Source Site',null=False)
+    id = models.UUIDField(primary_key=True, db_column='ID')
+    c_id = models.IntegerField(db_column='C_ID', null=False,default=0)
+    source_site = models.TextField(db_column='Source Site', null=False)
     crime_title = models.TextField(db_column='Crime Title', null=True)
     charge_description = models.TextField(db_column='Charge Description', null=True)
     police_department = models.TextField(db_column='Police Department', null=True)
@@ -25,7 +28,11 @@ class CriminalData(models.Model):
     published_date = models.TextField(db_column='Published Date', null=True)
     image = models.TextField(db_column='Image', null=True)
     url = models.TextField(db_column='URL', null=True)
+    state = models.TextField(db_column='State', null=True)
+    f_response_time = models.TextField(db_column='FOIA Response Time', null=True)
+    f_status = models.TextField(db_column='FOIA Status', null=False, default="Pending")
+    created_at = models.DateField(db_column='Created_At',null=False,default=datetime.today().date())
+    assigned_to = models.TextField(db_column='Assigned To',null=True)
+
     class Meta:
-        db_table= 'criminal_records'
-
-
+        db_table = 'criminal_data'

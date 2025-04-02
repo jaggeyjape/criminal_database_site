@@ -1,10 +1,20 @@
 import os.path
 from pathlib import Path
 import dj_database_url
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+load_dotenv(os.path.join(BASE_DIR, ".env"))
+
+# Retrieve variables from .env
+AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+AWS_S3_REGION_NAME = os.getenv('AWS_S3_REGION_NAME')
+
+AWS_S3_CUSTOM_DOMAIN = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -62,10 +72,20 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'criminal_records_site.wsgi.application'
 
-
-DATABASES ={
-    "default": dj_database_url.config(default="postgresql://postgres:ebpDqCeMhnutvRKteFMwVnxKlmGinYrj@switchyard.proxy.rlwy.net:14445/railway")
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'criminal_records',        # Your PostgreSQL database name
+        'USER': 'postgres',             # Your PostgreSQL username
+        'PASSWORD': 'amnaali123',         # Your PostgreSQL password
+        'HOST': 'localhost',                 # 'localhost' if running locally
+        'PORT': '5432',                      # Default PostgreSQL port
+    }
 }
+
+# DATABASES ={
+#     "default": dj_database_url.config(default="postgresql://postgres:ebpDqCeMhnutvRKteFMwVnxKlmGinYrj@switchyard.proxy.rlwy.net:14445/railway")
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators

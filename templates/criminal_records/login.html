@@ -151,7 +151,7 @@ button{
         <p style="color:red;font-size:20px;">Invalid Username or Password. Please TRY AGAIN.</p>
     {% endif %}
     <form method="POST" action="{% url 'login' %}">
-        {% csrf_token %}
+<!--        {% csrf_token %}-->
         <h3>Login Here</h3>
 
         <label for="username">Username</label>

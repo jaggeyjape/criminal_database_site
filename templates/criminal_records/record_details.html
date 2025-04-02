@@ -134,6 +134,16 @@ h1.has-background,h2.has-background,h3.has-background,h4.has-background,h5.has-b
 			width: auto;
 			z-index: 100000;
 		}
+		.image-block {
+    width: 300px;
+    height: 300px;
+    object-fit: contain; /* or 'contain' for different behavior */
+    border-radius: 8px; /* Optional for rounded corners */
+    float: right;
+    border: 3px solid black;
+    padding: 10px;
+    margin-right: 40px;
+}
 </style>
 <link rel='stylesheet' id='hostinger-ai-style-css' href="{% static 'css/host.css' %}" media='all' />
 <style id='hostinger-ai-style-inline-css'>
@@ -213,10 +223,13 @@ h1.has-background,h2.has-background,h3.has-background,h4.has-background,h5.has-b
     <br><hr>
 	<h1>Details for {{ record.name }}</h1>
 	 <div class="details">
+                        <img src="{% url 'get_s3_image' record.id %}" onerror="this.onerror=null; this.src='/media/images/No_image_available.jpg';" alt="No Image" class="image-block">
         {% for key, value in record.items %}
-		 <div class="details-item">
-			 <div><strong>{{ key|title|cut:"_" }}:</strong> <span>{{ value }}</span></div>
-		 </div>
+		 {% if value %}
+        <div class="details-item">
+            <div><strong>{{ key|title|cut:"_" }}:</strong> <span>{{ value }}</span></div>
+        </div>
+    {% endif %}
 {% endfor %}
     </div>
 </main>
