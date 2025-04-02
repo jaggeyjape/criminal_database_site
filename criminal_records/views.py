@@ -83,6 +83,7 @@ from django.conf import settings
 # Define static users
 STATIC_USERS = ["user1", "user2", "user3"]
 
+<<<<<<< HEAD
 
 def get_s3_image(request, record_id):
     # Get the record from the database
@@ -155,6 +156,8 @@ def assign_weekly_records():
         if record_ids:
             update_assigned_user(record_ids, user)  # Update database with assigned user
 
+=======
+>>>>>>> 373517fc041bdf94848c3606aa2738fbd05c110e
 @csrf_exempt
 def user_login(request):
     """Handle user login and trigger record assignment if needed."""
