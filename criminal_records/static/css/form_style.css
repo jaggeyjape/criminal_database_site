@@ -1,6 +1,6 @@
 /* Body Styling */
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     background: linear-gradient(135deg, #1e3c72, #2a5298); /* Page Background */
     display: flex;
     justify-content: center;

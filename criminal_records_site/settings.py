@@ -23,11 +23,11 @@ AWS_S3_CUSTOM_DOMAIN = f"https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAM
 SECRET_KEY = 'django-insecure-n&ho1i6l9)k9i!2h+%6lgp+h7t)6l%hwj8!znafqv6@t)ms_*8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = ['web-production-7a00.up.railway.app']
+DEBUG = False
+# ALLOWED_HOSTS = ['criminalrecords-production.up.railway.app','127.0.0.1:8000']
 
-CSRF_TRUSTED_ORIGINS = ['https://web-production-7a00.up.railway.app']
-# ALLOWED_HOSTS = ['*']
+# CSRF_TRUSTED_ORIGINS = ['https://criminalrecords-production.up.railway.app','127.0.0.1:8000']
+ALLOWED_HOSTS = ['*']
 LOGIN_REDIRECT_URL = '/search/'
 
 
@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'criminal_records_site.wsgi.application'
 # }
 
 DATABASES ={
-    "default": dj_database_url.config(default="postgresql://postgres:ebpDqCeMhnutvRKteFMwVnxKlmGinYrj@switchyard.proxy.rlwy.net:14445/railway")
+    "default": dj_database_url.config(default="postgresql://postgres:fTlWzeQXqIEFGKQIjdUIsowVLPITsjVM@caboose.proxy.rlwy.net:56862/railway")
 }
 
 # Password validation

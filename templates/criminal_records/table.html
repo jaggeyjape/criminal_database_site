@@ -13,8 +13,9 @@
                     <th>Image</th>
                     <th>State</th>
                     <th>FOIA Response Time</th>
-                    <th>FOIA Status</th>
-                    <th> Assigned To</th>
+<!--                    <th>FOIA Status</th>-->
+<!--                    <th> Assigned To</th>-->
+                    <th>Police Department</th>
                     <th>Detail Link</th>
                 </tr>
             </thead>
@@ -32,8 +33,9 @@
                     </td>
                     <td>{{ record.state }}</td>
                     <td>{{ record.f_response_time }}</td>
-                    <td>{{ record.f_status }}</td>
-                    <td>{{ record.assigned_to }}</td>
+                    <td>{{ record.police_department }}</td>
+<!--                    <td>{{ record.f_status }}</td>-->
+<!--                    <td>{{ record.assigned_to }}</td>-->
                     <td>
                         <a href="{% url 'record_details' record.id %}" target="_blank" class="profile-btn">Details</a>
                     </td>
@@ -76,26 +78,27 @@
 
 <style>
 /* Full Page Styling */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+<!--* {-->
+<!--    box-sizing: border-box;-->
+<!--    margin: 0;-->
+<!--    padding: 0;-->
+<!--}-->
 
-body, html {
-    width: 100%;
-    height: 100%;
-    font-family: Arial, sans-serif;
-<!--    background: linear-gradient(135deg, #4A90E2, #007bff);-->
-    background-size: cover;
-}
+<!--body, html {-->
+<!--    width: 100%;-->
+<!--    height: 100%;-->
+<!--    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;-->
+<!--    background: #f8f8f8;-->
+<!--    background-size: cover;-->
+<!--}-->
 
 /* Centering Page */
 .page-container {
     display: flex;
     justify-content: center;
 <!--    align-items: center;-->
-    padding: 5px;
+    padding: 20px;
+    margin: 50px auto;
     border-radius: 15px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 <!--    min-height: 100vh;-->
@@ -119,6 +122,7 @@ body, html {
         font-size: 28px;
         font-weight: bold;
         color: #333;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 <!--        margin: 10px;-->
     }
 
@@ -127,19 +131,21 @@ body, html {
     width: auto;
     max-width: 100%;
     border-collapse: collapse;
-    background: #fff;
+    background: #f8f8f8;
     border-radius: 10px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     table-layout: auto; /* Prevents overflow */
 }
 
 /* Table Header */
 .modern-table th {
-    background: linear-gradient(135deg, #4A90E2, #007bff);
+    background: linear-gradient(135deg, #cc6666, #4d0000);
     color: white;
     padding: 15px;
     font-size: 18px;
     border: 1px solid #ddd;
     text-align: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /* Table Cells */
@@ -150,6 +156,7 @@ body, html {
 <!--    text-align: center;-->
     white-space: nowrap;
     overflow: hidden;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-overflow: ellipsis;
 }
 
@@ -159,6 +166,7 @@ body, html {
     white-space: nowrap;
     max-width: 200px;
     overflow: hidden;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-overflow: ellipsis;
     transition: all 0.3s ease;
 }
@@ -167,20 +175,26 @@ body, html {
 .modern-table td.expanded {
     white-space: normal;
     word-wrap: break-word;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /* Profile Button */
 .profile-btn {
     text-decoration: none;
-    background: #007bff;
+    background: #d3d3d3;
     color: white;
     padding: 10px 15px;
+    font-weight:bold;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     border-radius: 5px;
+<!--    border: 1px solid black;-->
     transition: 0.3s;
 }
 
 .profile-btn:hover {
-    background: #0056b3;
+    background: green;
+    color: white;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 /* Pagination */
@@ -194,7 +208,7 @@ body, html {
     display: inline-block;
     padding: 10px 15px;
     text-decoration: none;
-    background: #007BFF;
+    background: #bc0000;
     color: white;
     margin: 5px;
     border-radius: 5px;

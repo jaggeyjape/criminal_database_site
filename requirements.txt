@@ -7,3 +7,4 @@ psycopg2-binary==2.9.10  # If using PostgreSQL
 sqlparse==0.5.3
 tzdata==2025.1
 boto3
+python-dotenv==0.21.0

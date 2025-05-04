@@ -564,7 +564,7 @@ div.asl_r p.showmore {
     padding: 0;
     margin: 0;
     font-weight: normal;
-    font-family: Open Sans;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #055e94;
     font-size: 12px;
     line-height: 30px;
@@ -576,7 +576,7 @@ div.asl_r p.showmore {
 
 div.asl_r p.showmore span {
     font-weight: normal;
-    font-family: Open Sans;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #055e94;
     font-size: 12px;
     line-height: 30px;
@@ -590,7 +590,7 @@ div.asl_r p.showmore span {
     padding: 0 6px;
     cursor: pointer;
     font-weight: bold;
-    font-family: Open Sans;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 div.asl_r .resdrg {
@@ -747,7 +747,7 @@ div.asl_s.searchsettings:hover .asl_sett_scroll::-webkit-scrollbar-thumb {
 
 div.asl_s.searchsettings .asl_option_inner .asl_option_checkbox:after {
     opacity: 0;
-    font-family: 'aslsicons2';
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     content: "\e800";
     font-weight: normal !important;
     background: transparent;
